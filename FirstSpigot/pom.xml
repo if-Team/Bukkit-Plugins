@@ -7,7 +7,7 @@
     <groupId>pe.chalk</groupId>
     <artifactId>FirstSpigot</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <description>My first Spigot plugin!</description>
 
     <build>
         <defaultGoal>install</defaultGoal>
