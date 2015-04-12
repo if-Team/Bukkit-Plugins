@@ -1,3 +1,9 @@
 name: FirstSpigot
 version: 1.0
 main: pe.chalk.firstspigot.FirstSpigot
+
+commands:
+  test:
+    description:
+  test2:
+    description:
