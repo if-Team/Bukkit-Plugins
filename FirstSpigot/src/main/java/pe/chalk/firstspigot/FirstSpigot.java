@@ -87,7 +87,7 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
         final Player player = event.getPlayer();
         final Entity entity = event.getRightClicked();
 
-        if(cooltime.containsKey(player) && (System.currentTimeMillis() - cooltime.get(player)) <= 10000){
+        if(cooltime.containsKey(player) && (System.currentTimeMillis() - cooltime.get(player)) <= 30000){
             player.sendMessage(ChatColor.RED + "[FirstSpigot] You need to wait a second!");
             return;
         }
