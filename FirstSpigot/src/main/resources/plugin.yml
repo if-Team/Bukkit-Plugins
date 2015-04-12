@@ -7,3 +7,5 @@ commands:
     description: Send message to sender
   test2:
     description: Send message to all
+  cls:
+    description: Clear chatting

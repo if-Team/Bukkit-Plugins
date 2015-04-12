@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 /**
  * @author ChalkPE <amato0617@gmail.com>
@@ -28,6 +29,7 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
 
         this.getCommand("test").setExecutor(this);
         this.getCommand("test2").setExecutor(this);
+        this.getCommand("cls").setExecutor(this);
         this.getServer().getPluginManager().registerEvents(this, this);
 
         this.getLogger().info("Hello, Spigot!");
@@ -49,11 +51,29 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
 
         Player player = (Player) sender;
 
-        if(command.getName().equalsIgnoreCase("test")){
-            player.sendMessage(ChatColor.AQUA + "[FirstSpigot] Hello, commander!");
-        }else if(command.getName().equalsIgnoreCase("test2")){
-            this.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "[FirstSpigot] Hello, world!");
-            this.getServer().getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.setFireTicks(200));
+        switch(command.getName().toLowerCase()){
+            case "test":
+                player.sendMessage(ChatColor.AQUA + "[FirstSpigot] Hello, commander!");
+                break;
+            case "test2":
+                this.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "[FirstSpigot] Hello, world!");
+                this.getServer().getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.setFireTicks(200));
+                break;
+            case "cls":
+                Consumer<? super Player> cls = onlinePlayer -> {
+                    for(int i = 0; i < 30; i++){
+                        onlinePlayer.sendMessage("");
+                    }
+                };
+
+                if(player.isOp()){
+                    getServer().getOnlinePlayers().forEach(cls);
+                }else{
+                    cls.accept(player);
+                }
+                break;
+
+            default:
         }
         return true;
     }
