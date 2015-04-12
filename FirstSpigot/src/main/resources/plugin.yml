@@ -4,6 +4,6 @@ main: pe.chalk.firstspigot.FirstSpigot
 
 commands:
   test:
-    description:
+    description: Send message to sender
   test2:
-    description:
+    description: Send message to all

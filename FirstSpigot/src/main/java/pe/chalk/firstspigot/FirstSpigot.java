@@ -1,5 +1,6 @@
 package pe.chalk.firstspigot;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,9 +39,9 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
         }
 
         if(command.getName().equalsIgnoreCase("test")) {
-            sender.sendMessage("Hello, commander!");
+            sender.sendMessage(ChatColor.AQUA + "Hello, commander!");
         } else if(command.getName().equalsIgnoreCase("test2")) {
-            this.getServer().broadcastMessage("Hello, world!");
+            this.getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "Hello, world!");
         }
         return true;
     }
