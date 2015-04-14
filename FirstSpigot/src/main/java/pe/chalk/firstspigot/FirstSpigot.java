@@ -20,9 +20,9 @@ import java.util.function.Consumer;
  * @since 2015-04-12
  */
 public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor {
-
-    private HashMap<Player, Long> cooltime = new HashMap<>();
-
+    private static long coolTimeMillis = 30000;
+    private HashMap<Player, Long> lastExecutedTime = new HashMap<>();
+    
     @Override
     public void onEnable(){
         super.onEnable();
@@ -87,7 +87,7 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
         final Player player = event.getPlayer();
         final Entity entity = event.getRightClicked();
 
-        if(cooltime.containsKey(player) && (System.currentTimeMillis() - cooltime.get(player)) <= 30000){
+        if(lastExecutedTime.containsKey(player) && (System.currentTimeMillis() - lastExecutedTime.get(player)) <= FirstSpigot.coolTimeMillis){
             player.sendMessage(ChatColor.RED + "[FirstSpigot] You need to wait a second!");
             return;
         }
@@ -117,6 +117,6 @@ public class FirstSpigot extends JavaPlugin implements Listener, CommandExecutor
         }.runTaskTimer(this, 0L, 20L);
 
         event.getPlayer().sendMessage(ChatColor.RED + "[FirstSpigot] The bomb has been installed!");
-        cooltime.put(player, System.currentTimeMillis());
+        lastExecutedTime.put(player, System.currentTimeMillis());
     }
 }
